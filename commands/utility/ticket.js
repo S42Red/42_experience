@@ -1,5 +1,5 @@
 
-const { SlashCommandBuilder, PermissionFlagsBits, ChannelType } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, PermissionsBitField, ChannelType } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,6 +14,16 @@ module.exports = {
 		await interaction.channel.parent.children.create({
         name: `Ticket de ${interaction.user.username}`,
         type: ChannelType.GuildText,
+        permissionOverwrites: [
+          {
+            id: interaction.guild.id,
+            deny: [PermissionsBitField.Flags.ViewChannel],
+          },
+          {
+            id: interaction.user.id,
+            allow: [PermissionsBitField.Flags.ViewChannel],
+          },
+        ],  
       });
 
       await interaction.editReply({ content: "Ta demande de contact a bien été reçue 📨\nUn salon a été créé pour discuter avec le staff !" });
