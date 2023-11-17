@@ -5,7 +5,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("ticket")
     .setDescription('Créez un ticket pour contacter le staff')
-    .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
+    //.setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
     .setDMPermission(false),
   async execute(interaction) {
     await interaction.reply({ content: "Prise en compte de ta demande, chargement en cours...", ephemeral: true });
